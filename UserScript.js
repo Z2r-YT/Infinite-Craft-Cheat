@@ -1,12 +1,14 @@
 // ==UserScript==
 // @name         Infinite Craft Element Cheat
 // @namespace    https://duckwithsunglasses.com
-// @version      0.1
+// @version      1.02
 // @description  Adds a visual GUI for quickly editing your browser's local storage, allowing you to add whatever custom object you want.
 // @author       You
 // @match        https://neal.fun/infinite-craft/
 // @grant        none
 // @license      MIT
+// @downloadURL https://update.greasyfork.org/scripts/487767/Infinite%20Craft%20Element%20Cheat.user.js
+// @updateURL https://update.greasyfork.org/scripts/487767/Infinite%20Craft%20Element%20Cheat.meta.js
 // ==/UserScript==
 
 (function() {
@@ -83,10 +85,26 @@
     var timeout = setTimeout(function() {
         console.error("Page load timeout. Proceeding anyway...");
         createGUI();
+
+            // remove search cus god damn autosnap is annoying
+    var sidebarInput = document.querySelector('.sidebar-input');
+    if (sidebarInput) {
+        sidebarInput.remove();
+    } else {
+        console.log('Element with class "sidebar-input" not found.');
+    }
     }, 1000); // 5 seconds timeout
 
     window.addEventListener('load', function() {
         clearTimeout(timeout); // Cancel the timeout if the page loads successfully
         createGUI();
+
+            var sidebarInput = document.querySelector('.sidebar-input');
+    if (sidebarInput) {
+        sidebarInput.remove();
+    } else {
+        console.log('Element with class "sidebar-input" not found.');
+    }
     });
+
 })();
